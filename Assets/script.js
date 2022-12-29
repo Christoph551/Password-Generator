@@ -3,8 +3,7 @@
 // Need password to have ability to use all special characters
 // Need password to have ability to use all numbers
 // Need password to be a minimum of 8 characters
-// Need password to be a maximum of 149 characters
-
+// Need password to be a maximum of 128 characters
 
 const generateBtn = document.querySelector("#generate"); // Moved generateBtn to group with other variables. Part of original source code
 const numbers = [0,1,2,3,4,5,6,7,8,9] // Created constant for all numbers
@@ -17,18 +16,23 @@ let passLength = 8;
 function generatePassword() {
   const userInput = window.prompt("How many characters would you like your password to contain?");
   const charLength = parseInt(userInput);
+// Included alerts for if the user enters < 8 or > 128
   if (isNaN(charLength)) {
     window.alert("Please enter only numeric characters.");
-  } else (passLength < 8 || passLength > 128);
-  passAlert = window.alert("Password must be between 8 and 128 characters.")
-  return;
-}
-  if (passLength >= 8 && passLength <= 128) {
-    numberQuestion = window.prompt("Click 'OK' to include numbers in your password?")
-    lowerQuestion = window.prompt("Click 'OK' to include lower case letters in your password?")
-    upperQuestion = window.prompt("Click 'OK' to include upper case letters in your password?")
-    specialQuestion = window.prompt("Click 'OK' to include special characters in your password?")
+  } else if (charLength < 8) {
+    window.alert("Password must be between 8 and 128 characters.");
+    return;
+  } else if (charLength > 128) {
+    window.alert("Password must be between 8 and 128 characters.");
+    return;
   }
+} 
+
+// const numberQuestion = window.confirm("Click 'OK' to include numbers in your password?");
+// const lowerQuestion = window.confirm("Click 'OK' to include lower case letters in your password?");
+// const upperQuestion = window.confirm("Click 'OK' to include upper case letters in your password?");
+// const specialQuestion = window.confirm("Click 'OK' to include special characters in your password?");
+
 
 // Write password to the #password input
 function writePassword() {
@@ -41,4 +45,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
