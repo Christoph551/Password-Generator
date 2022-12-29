@@ -17,31 +17,31 @@ function generatePassword() {
   const userInput = window.prompt("How many characters would you like your password to contain?");
   const charLength = parseInt(userInput);
 // Included alerts for if the user enters < 8 or > 128
+// If one of the below parameters are met, then the logic continues to move on to the following function's questions. Need to fix!!!
   if (isNaN(charLength)) {
     window.alert("Please enter only numeric characters.");
+    return "You have input one or more alphabetic/special characters. Please try again."
   } else if (charLength < 8) {
     window.alert("Password must be between 8 and 128 characters.");
-    return;
+    return 'You have selected a number less than 8. Please try again.'; // Message displayed in the box to prompt the user to try again.
   } else if (charLength > 128) {
     window.alert("Password must be between 8 and 128 characters.");
-    return;
-  }
+    return 'You have selected a number greater than 128. Please try again.'; // Message displayed in the box to prompt the user to try again.
+  } 
 } 
-
-// const numberQuestion = window.confirm("Click 'OK' to include numbers in your password?");
-// const lowerQuestion = window.confirm("Click 'OK' to include lower case letters in your password?");
-// const upperQuestion = window.confirm("Click 'OK' to include upper case letters in your password?");
-// const specialQuestion = window.confirm("Click 'OK' to include special characters in your password?");
-
 
 // Write password to the #password input
 function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
-
+  window.confirm("Click 'OK' to include numbers in your password?");
+  window.confirm("Click 'OK' to include lower case letters in your password?");
+  window.confirm("Click 'OK' to include upper case letters in your password?");
+  window.confirm("Click 'OK' to include special characters in your password?");
   passwordText.value = password;
-
 }
+
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
