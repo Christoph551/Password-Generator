@@ -11,7 +11,7 @@ const lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","
 const upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"] // Created constant for all uppercase letters
 const specialCharacters = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", ";", ":", "'", ",", "<", ".", ">", "?"] // Created constant for all Special Characters.
 let passLength = "";
-let storePass = [];
+let passArray = [];
 
 // Function for the initial alert window. Also included message with a return in the event the user enters something other than a number.
 function generatePassword() {
@@ -29,19 +29,19 @@ function generatePassword() {
           return 'You have selected a number less than 8. Please try again.'; // Message displayed in the box to prompt the user to try again.
         } else if (passLength > 128) {
           window.alert("Password must be between 8 and 128 characters.");
-          return; // Message displayed in the box to prompt the user to try again.
+          return 'You have selected a number greater than 128. Please try again.'; // Message displayed in the box to prompt the user to try again.
         } else if (userInput != isNaN(passLength)) {
           window.confirm("Click 'OK' to include numbers in your password.");
-          storePass.push(numbers); // Added push to include user's option in the array for the password
+          passArray.push(numbers); // Added push to include user's option in the array for the password
           window.confirm("Click 'OK' to include lower case letters in your password.");
-          storePass.push(lowerCase); // Added push to include user's option in the array for the password
+          passArray.push(lowerCase); // Added push to include user's option in the array for the password
           window.confirm("Click 'OK' to include upper case letters in your password.");
-          storePass.push(upperCase); // Added push to include user's option in the array for the password
+          passArray.push(upperCase); // Added push to include user's option in the array for the password
           window.confirm("Click 'OK' to include special characters in your password.");
-          storePass.push(specialCharacters); // Added push to include user's option in the array for the password
+          passArray.push(specialCharacters); // Added push to include user's option in the array for the password
           return;
       } for (i = 0; i < userInput.length; i += 1) { // Have not yet figured out the for loop and math. Only undefined is being displayed. 
-        const random = Math.floor(Math.random() *passLength.length);
+        let random = Math.floor(Math.random() *passLength.length);
         password += passLength[random];
       } return password;
 } 
