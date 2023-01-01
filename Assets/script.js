@@ -32,43 +32,27 @@ function generatePassword() {
           return; // Message displayed in the box to prompt the user to try again.
         } else if (userInput != isNaN(passLength)) {
           window.confirm("Click 'OK' to include numbers in your password.");
+          storePass.push(numbers); // Added push to include user's option in the array for the password
           window.confirm("Click 'OK' to include lower case letters in your password.");
+          storePass.push(lowerCase); // Added push to include user's option in the array for the password
           window.confirm("Click 'OK' to include upper case letters in your password.");
+          storePass.push(upperCase); // Added push to include user's option in the array for the password
           window.confirm("Click 'OK' to include special characters in your password.");
+          storePass.push(specialCharacters); // Added push to include user's option in the array for the password
           return;
-      } if (includeNumbers) {
-        storePass.push(numbers);
-      }
-      if (includeLowerCase) {
-        storePass.push(lowerCase);
-      }
-      if (includeUpperCase) {
-        storePass.push(upperCase);
-      }
-      if (includeSpecial) {
-        storePass.push(specialCharacters);
-      }
+      } for (i = 0; i < userInput.length; i += 1) { // Have not yet figured out the for loop and math. Only undefined is being displayed. 
+        const random = Math.floor(Math.random() *passLength.length);
+        password += passLength[random];
+      } return password;
 } 
+
 // Write password to the #password input
-function writePassword(min, max) {
+function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
-  let randomize = Math.random();
-    if (!max) {
-      max = min;
-      min = 0;
-  }
   passwordText.value = password;
-  return Math.floor(min*(1- randomize) + randomize*max)
 }
 
-function randomizing(list) {
-  return list[randomize(list.length)]
-} for (var i = 0; i < passLength; i++) {
-  let randomList = randomizing(storePass);
-  let randomChar = randomizing(randomList);
-  passLength = randomChar;
-}
 
 
 // Add event listener to generate button
