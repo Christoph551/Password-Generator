@@ -6,21 +6,24 @@
 // Need password to be a maximum of 128 characters
 
 const generateBtn = document.querySelector("#generate"); // Moved generateBtn to group with other variables. Part of original source code
-const numbers = [0,1,2,3,4,5,6,7,8,9] // Created constant for all numbers
-const lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"] // Created constant for all lowercase letters
-const upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"] // Created constant for all uppercase letters
-const specialCharacters = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", ";", ":", "'", ",", "<", ".", ">", "?"] // Created constant for all Special Characters.
+const numbers = arrayForRandomPassword(48, 57); // Character codes used to clean up code
+const lowerCase = arrayForRandomPassword(65, 90) 
+const upperCase = arrayForRandomPassword(97, 122) 
+const specialCharacters = arrayForRandomPassword(33, 47)
+    .concat(arrayForRandomPassword(58, 64)
+  ) .concat(arrayForRandomPassword(91, 96)
+  ) .concat(arrayForRandomPassword(123, 126)
+  )
 let passLength = "";
 let passArray = [];
 
-// Function for the initial alert window. Also included message with a return in the event the user enters something other than a number.
-function generatePassword() {
+console.log(numbers, lowerCase, upperCase, specialCharacters); // Console log to display character codes being used.
+
+// Function for the initial alert window. 
+function generatePassword(numbers, lowerCase, upperCase, specialCharacters) { // Trying to isolate variables within this function
   let userInput = window.prompt("How many characters would you like your password to contain?");
   let passLength = parseInt(userInput);
-// If one of the below parameters are met, then the logic continues to move on to the following function's questions. Need to fix!!!
-
-// ___________________________________________________________________________________________________________________________________
-// Included alerts for if the user enters < 8 or > 128
+// Included alerts for if the user enters < 8 or > 128. Also included message with a return in the event the user enters something other than a number.
     if (isNaN(passLength)) {
         window.alert("Please enter only numeric characters.");
         return "You have input one or more alphabetic/special characters. Please try again."
@@ -40,17 +43,22 @@ function generatePassword() {
           window.confirm("Click 'OK' to include special characters in your password.");
           passArray.push(specialCharacters); // Added push to include user's option in the array for the password
           return;
-      } for (i = 0; i < userInput.length; i += 1) { // Have not yet figured out the for loop and math. Only undefined is being displayed. 
-        let random = Math.floor(Math.random() *passLength.length);
-        password += passLength[random];
-      } return password;
+      } 
 } 
+
+function arrayForRandomPassword(low, High) { // Attempting to add an additional array for math portion
+  const array = [];
+  for (let i = low; i <= High; i ++) { 
+    array.push(i);
+  } 
+  return array;
+}
 
 // Write password to the #password input
 function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
-  passwordText.value = password;
+  passwordText.innerText = password;
 }
 
 
