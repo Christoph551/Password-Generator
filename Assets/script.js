@@ -10,13 +10,13 @@ let numbers = [0,1,2,3,4,5,6,7,8,9] // Created variable for all numbers
 let lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"] // Created variable for all lowercase letters
 let upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"] // Created variable for all uppercase letters
 let specialCharacters = ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", ";", ":", "'", ",", "<", ".", ">", "?"] // Created variable for all Special Characters.
-let randomPassword = "";
-let storePass = [];
 
 console.log(numbers, lowerCase, upperCase, specialCharacters); // Console log to display character codes being used.
 
 // Function for the initial alert window. 
 function generatePassword() { // Trying to isolate variables within this function
+  let randomPassword = "";
+  let storePass = [];
   let userInput = window.prompt("How many characters would you like your password to contain?");
   let passLength = parseInt(userInput);
 // Included alerts for if the user enters < 8 or > 128. Also included message with a return in the event the user enters something other than a number.
